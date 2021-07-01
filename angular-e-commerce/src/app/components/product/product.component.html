@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-5 align-items-center">
+      <div class="input-group">
+        <input
+          type="text"
+          placeholder="Product Name"
+          id="name"
+          name="name"
+          class="form-control"
+        />
+        <input
+          type="number"
+          placeholder="Product Price"
+          id="price"
+          name="price"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-secondary"
+            ng-click="addProduct(name, price); name ='\0'; price='\0';"
+          >
+            Add Product
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <tbody>
+    <tr *ngFor="let product of getProduct();">
+      <td>{{ product.name }}</td>
+      <td>{{ product.price }}</td>
+    </tr>
+  </tbody>
+</div>
