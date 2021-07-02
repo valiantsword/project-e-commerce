@@ -1,35 +1,100 @@
+<div class="container" style="display: flex">
+  <div class="grid-child" style="width: 90%">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <td scope="col">Name</td>
+          <td scope="col">Price</td>
+          <td scope="col">Add to Cart</td>
+        </tr>
+      </thead>
+      <tr *ngFor="let product of getProduct(); let i = index">
+        <td>{{ i }}</td>
+        <td>{{ product.name }}</td>
+        <td>$ {{ product.price }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="cartItem = cartItem + 1"
+            id="btn"
+          >
+            Add to Cart
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="grid-child" style="flex-grow: 1">
+    Cart:
+    {{ cartItem }}
+  </div>
+</div>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-5 align-items-center">
-      <div class="input-group">
-        <input
-          type="text"
-          placeholder="Product Name"
-          id="name"
-          name="name"
-          class="form-control"
-        />
-        <input
-          type="number"
-          placeholder="Product Price"
-          id="price"
-          name="price"
-        />
-        <div class="input-group-append">
-          <button
-            class="btn btn-secondary"
-            ng-click="addProduct(name, price); name ='\0'; price='\0';"
-          >
-            Add Product
-          </button>
+      <div *ngIf="authenticated">
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="Product Name"
+            id="name"
+            name="name"
+            class="form-control"
+            [(ngModel)]="name"
+          />
+          <input
+            type="number"
+            placeholder="Product Price"
+            id="price"
+            name="price"
+            class="form-control"
+            [(ngModel)]="price"
+          />
+          <div class="input-group-append">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="addProduct(); name = ''; price = 0"
+              id="btn"
+            >
+              Add Product
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="!authenticated">
+        Admin Panel:
+        <div class="input-group">
+          <input
+            type="text"
+            placeholder="User Name"
+            id="userName"
+            name="userName"
+            class="form-control"
+            [(ngModel)]="userName"
+          />
+          <input
+            type="text"
+            placeholder="Password"
+            id="password"
+            name="password"
+            class="form-control"
+            [(ngModel)]="password"
+          />
+          <div class="input-group-append">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="checkUser(); userName = ''; password = ''"
+              id="btn"
+            >
+              Log in
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <tbody>
-    <tr *ngFor="let product of getProduct();">
-      <td>{{ product.name }}</td>
-      <td>{{ product.price }}</td>
-    </tr>
-  </tbody>
 </div>
