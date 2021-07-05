@@ -1,4 +1,5 @@
 <div class="container" style="display: flex">
+  <!--BEGIN TABLE -->
   <div class="grid-child" style="width: 90%">
     <table class="table">
       <thead class="thead-dark">
@@ -26,18 +27,25 @@
       </tr>
     </table>
   </div>
+  <!-- END TABLE -->
+  <!-- BEGIN CART -->
   <div class="grid-child" style="flex-grow: 1">
     Cart:
     {{ cartItem }}
   </div>
+  <!-- END CART -->
 </div>
+<!-- BEGIN ADMIN -->
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-5 align-items-center">
+      <!-- BEGIN ADD PRODUCT -->
       <div *ngIf="authenticated">
+        Add Product:
         <div class="input-group">
           <input
             type="text"
+            autocomplete="off"
             placeholder="Product Name"
             id="name"
             name="name"
@@ -46,6 +54,7 @@
           />
           <input
             type="number"
+            autocomplete="off"
             placeholder="Product Price"
             id="price"
             name="price"
@@ -64,11 +73,15 @@
           </div>
         </div>
       </div>
+      <!-- END ADD PRODUCT -->
+
+      <!-- BEGIN LOGIN -->
       <div *ngIf="!authenticated">
         Admin Panel:
         <div class="input-group">
           <input
             type="text"
+            autocomplete="off"
             placeholder="User Name"
             id="userName"
             name="userName"
@@ -76,7 +89,7 @@
             [(ngModel)]="userName"
           />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             id="password"
             name="password"
@@ -94,7 +107,9 @@
             </button>
           </div>
         </div>
+        <!-- END LOGIN -->
       </div>
     </div>
   </div>
 </div>
+<!-- END ADMIN -->
